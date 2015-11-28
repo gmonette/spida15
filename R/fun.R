@@ -1258,6 +1258,7 @@ td <- function(
   invisible(ret[grep('superpose',names(ret))])
 }
 
+#' @export
 gd <-
   function (n=9, 
             col = brewer.pal(n,"Set1"), lty = 1:n, lwd = 1, 
