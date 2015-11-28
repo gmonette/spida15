@@ -9480,59 +9480,14 @@ ch <- function(x) as.character(x)
 #' 
 #' Set operations written as binary operators
 #' 
-#' %% ~~ If necessary, more details than the description above ~~
-#' 
 #' @aliases %and% %less% %or%
-#' @param a vector treated as a set %% ~~Describe \code{a} here~~
-#' @param b %% ~~Describe \code{b} here~~ vector treated as a set
-#' @note %% ~~further notes~~
-#' @author %% ~~who you are~~
-#' @seealso %% ~~objects to See Also as \code{\link{help}}, ~~~
-#' @references %% ~put references to the literature/web site here ~
-#' @keywords ~kwd1 ~kwd2
-#' @examples
-#' 
-#' ##---- Should be DIRECTLY executable !! ----
-#' ##-- ==>  Define data, use random,
-#' ##--	or do  help(data=index)  for the standard data sets.
-#' 
-#' ## The function is currently defined as
-#' function (a, b) 
-#' intersect(a, b)
-#' 
+#' @param a,b vectors treated as sets
 #' @export
 "%and%" <- function( a, b) intersect( a, b)
 
 
 
-
 #' Library workaround for RDC
-#' 
-#' %% ~~ A concise (1-5 lines) description of what the function does. ~~
-#' 
-#' %% ~~ If necessary, more details than the description above ~~
-#' 
-#' @param x %% ~~Describe \code{x} here~~
-#' @note %% ~~further notes~~
-#' @author %% ~~who you are~~
-#' @seealso %% ~~objects to See Also as \code{\link{help}}, ~~~
-#' @references %% ~put references to the literature/web site here ~
-#' @keywords ~kwd1 ~kwd2
-#' @examples
-#' 
-#' ##---- Should be DIRECTLY executable !! ----
-#' ##-- ==>  Define data, use random,
-#' ##--	or do  help(data=index)  for the standard data sets.
-#' 
-#' ## The function is currently defined as
-#' function (x) 
-#' {
-#'     xn <- deparse(substitute(x))
-#'     if (!do.call("require", list(as.name(xn)))) {
-#'         install.packages(xn)
-#'         do.call("library", list(as.name(xn)))
-#'     }
-#'   }
 #' 
 #' @export
 lib <- function(x) {
@@ -9552,52 +9507,8 @@ lib <- function(x) {
 
 #' Read a SAS ODS file
 #' 
-#' %% ~~ A concise (1-5 lines) description of what the function does. ~~
-#' 
-#' %% ~~ If necessary, more details than the description above ~~
-#' 
-#' @param file %% ~~Describe \code{file} here~~
-#' @param tfile %% ~~Describe \code{tfile} here~~
-#' @note %% ~~further notes~~
-#' @author %% ~~who you are~~
-#' @seealso %% ~~objects to See Also as \code{\link{help}}, ~~~
-#' @references %% ~put references to the literature/web site here ~
-#' @keywords ~kwd1 ~kwd2
-#' @examples
-#' 
-#' ##---- Should be DIRECTLY executable !! ----
-#' ##-- ==>  Define data, use random,
-#' ##--	or do  help(data=index)  for the standard data sets.
-#' 
-#' ## The function is currently defined as
-#' function (file, tfile = tempfile()) 
-#' {
-#'     help = "\n    sasin reads a .csv file created by SAS with\n       ODS CSV FILE = 'file';\n        < SAS procedure statements >\n       ODS CSV CLOSE;\n    The tables produced by SAS are elements in the list\n    returned by sasin.\n    "
-#'     todf <- function(ll) {
-#'         if (length(ll) < 3) 
-#'             return(character(0))
-#'         if (length(ll) == 3) 
-#'             return(ll[2])
-#'         cat(ll[2], "\n", file = tfile)
-#'         for (ii in 3:(length(ll) - 1)) {
-#'             cat(ll[ii], "\n", file = tfile, append = T)
-#'         }
-#'         df <- read.csv(tfile, header = F)
-#'         if (!any(sapply(df, is.numeric))) 
-#'             df <- read.csv(tfile)
-#'         df
-#'     }
-#'     readin <- scan(file, what = "", sep = "\n", blank.lines.skip = F)
-#'     blanks <- which(readin == "")
-#'     head.pos <- c(1, 1 + head(blanks, -1))
-#'     heads <- gsub("\"|,", "", readin[head.pos])
-#'     reps <- diff(c(head.pos, 1 + length(readin)))
-#'     heads <- rep(heads, reps)
-#'     readin <- split(readin, heads)
-#'     readin <- lapply(readin, todf)
-#'     readin
-#'   }
-#' 
+#' @param file input file
+#' @param tfile
 #' @export
 sasin <- function(file, tfile = tempfile() ) {
 # moved to "/R/fun.R"

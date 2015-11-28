@@ -9,37 +9,9 @@
 a \%and\% b
 }
 \arguments{
-\item{a}{vector treated as a set %% ~~Describe \code{a} here~~}
-
-\item{b}{%% ~~Describe \code{b} here~~ vector treated as a set}
+\item{a,b}{vectors treated as sets}
 }
 \description{
 Set operations written as binary operators
 }
-\details{
-%% ~~ If necessary, more details than the description above ~~
-}
-\note{
-%% ~~further notes~~
-}
-\examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function (a, b)
-intersect(a, b)
-}
-\author{
-%% ~~who you are~~
-}
-\references{
-%% ~put references to the literature/web site here ~
-}
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
-\keyword{~kwd1}
-\keyword{~kwd2}
 
