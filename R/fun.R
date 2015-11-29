@@ -8816,9 +8816,6 @@ varLevel <- function(x, form, ...) {
         ret
 }
 
-if (FALSE) {
-
-
 #' Create a data frame at a higher level of aggregation
 #' 
 #' Produce a higher level data set with one row per cluster. The data set can
@@ -8887,37 +8884,34 @@ if (FALSE) {
 #' 
 #' 
 #' @export
-        up <- function( dd, form , all = FALSE, keep = ncol(sel) ) {
-               ##
-               ## Replaced Nov 11, 2007  See below
-
-              ## Description:    (G. Monette, June 10, 2006)
-              ## Creates a higher level data set by selecting first
-              ## after ordering and keeping only invariant variables
-              ## To have summary variables they need to have been created
-              ## with, e.g., capply
-              sel <- model.frame( form , dd , na.action = na.include )
-              if( !all) vl <- varLevel( dd, form ) else vl <- rep(0,ncol(dd))
-              dd [ na.omit(sapply( split( 1:nrow(dd), sel ), function(x) x[1])), vl < keep + 1, drop = FALSE]
-        }
-
-
-        up <- function( dd, form , all = FALSE, keep = ncol(sel) ) {
-              ## Description:    (G. Monette, June 10, 2006)
-              ## Creates a higher level data set by selecting first
-              ## after ordering and keeping only invariant variables
-              ## To have summary variables they need to have been created
-              ## with, e.g., capply
-              #sel <- model.frame( form , dd , na.action = na.include )
-              #if( !all) vl <- varLevel( dd, form ) else vl <- rep(0,ncol(dd))
-              #dd [ na.omit(sapply( split( 1:nrow(dd), sel ), function(x) x[1])), vl < keep + 1, drop = FALSE]
-              require(nlme)
-
-              gsummary( dd, form = form, invariantsOnly = ! all )
-        }
-} # end of FALSE
-
-
+#         up <- function( dd, form , all = FALSE, keep = ncol(sel) ) {
+#                ##
+#                ## Replaced Nov 11, 2007  See below
+# 
+#               ## Description:    (G. Monette, June 10, 2006)
+#               ## Creates a higher level data set by selecting first
+#               ## after ordering and keeping only invariant variables
+#               ## To have summary variables they need to have been created
+#               ## with, e.g., capply
+#               sel <- model.frame( form , dd , na.action = na.include )
+#               if( !all) vl <- varLevel( dd, form ) else vl <- rep(0,ncol(dd))
+#               dd [ na.omit(sapply( split( 1:nrow(dd), sel ), function(x) x[1])), vl < keep + 1, drop = FALSE]
+#         }
+# 
+# 
+#         up <- function( dd, form , all = FALSE, keep = ncol(sel) ) {
+#               ## Description:    (G. Monette, June 10, 2006)
+#               ## Creates a higher level data set by selecting first
+#               ## after ordering and keeping only invariant variables
+#               ## To have summary variables they need to have been created
+#               ## with, e.g., capply
+#               #sel <- model.frame( form , dd , na.action = na.include )
+#               #if( !all) vl <- varLevel( dd, form ) else vl <- rep(0,ncol(dd))
+#               #dd [ na.omit(sapply( split( 1:nrow(dd), sel ), function(x) x[1])), vl < keep + 1, drop = FALSE]
+#               require(nlme)
+# 
+#               gsummary( dd, form = form, invariantsOnly = ! all )
+#         }
 up <-
   function ( object, form = formula(object),
              all = FALSE, sep = "/",
@@ -9028,251 +9022,6 @@ up <-
     value
   }
 
-
-
-###
-###  Row.names heading on data.frame
-###
-
-
-
-
-#' Print a labeled data frame
-#' 
-#' %% ~~ A concise (1-5 lines) description of what the function does. ~~
-#' 
-#' %% ~~ If necessary, more details than the description above ~~
-#' 
-#' @param x %% ~~Describe \code{x} here~~
-#' @param \dots %% ~~Describe \code{\dots} here~~
-#' @param digits %% ~~Describe \code{digits} here~~
-#' @param quote %% ~~Describe \code{quote} here~~
-#' @param right %% ~~Describe \code{right} here~~
-#' @note %% ~~further notes~~
-#' @author %% ~~who you are~~
-#' @seealso %% ~~objects to See Also as \code{\link{help}}, ~~~
-#' @references %% ~put references to the literature/web site here ~
-#' @keywords ~kwd1 ~kwd2
-#' @examples
-#' 
-#' ##---- Should be DIRECTLY executable !! ----
-#' ##-- ==>  Define data, use random,
-#' ##--	or do  help(data=index)  for the standard data sets.
-#' 
-#' ## The function is currently defined as
-#' function (x, ..., digits = NULL, quote = FALSE, right = TRUE) 
-#' {
-#'     labs <- attributes(x)$labs
-#'     if (length(x) == 0) {
-#'         cat("NULL data frame with", length(row.names(x)), "rows\n")
-#'     }
-#'     else if (length(row.names(x)) == 0) {
-#'         print.default(names(x), quote = FALSE)
-#'         cat("<0 rows> (or 0-length row.names)\n")
-#'     }
-#'     else {
-#'         mat <- as.matrix(format.data.frame(x, digits = digits, 
-#'             na.encode = FALSE))
-#'         labs <- c(labs, "", "")
-#'         labs <- labs[1:2]
-#'         names(dimnames(mat)) <- labs
-#'         print(mat, ..., quote = quote, right = right)
-#'     }
-#'     invisible(x)
-#'   }
-#' 
-print.data.frame.lab <-    
-    function (x, ..., digits = NULL, quote = FALSE, right = TRUE) 
-    {
-        labs <- attributes(x)$labs
-        if (length(x) == 0) {
-            cat("NULL data frame with", length(row.names(x)), "rows\n")
-        }
-        else if (length(row.names(x)) == 0) {
-            print.default(names(x), quote = FALSE)
-            cat("<0 rows> (or 0-length row.names)\n")
-        }
-        else {
-            mat <- as.matrix(format.data.frame(x, digits = digits, 
-                na.encode = FALSE))
-            labs <- c(labs,"","")
-            labs <- labs[1:2]
-            names(dimnames(mat)) <- labs    
-            print(mat , ..., quote = quote, right = right)
-        }
-        invisible(x)
-    }
-
-#' @export
-"[.data.frame.lab" <- function(x, ...){
-    lab <- labs(x)
-    ret <- get("[.data.frame")(x,...)
-    if( inherits(ret, "data.frame")) labs(ret) <- lab
-    ret
-} 
-
-
-
-
-
-#' Add labels -- assignment
-#' 
-#' %% ~~ A concise (1-5 lines) description of what the function does. ~~
-#' 
-#' %% ~~ If necessary, more details than the description above ~~
-#' 
-#' @param x %% ~~Describe \code{x} here~~
-#' @param \dots %% ~~Describe \code{\dots} here~~
-#' @note %% ~~further notes~~
-#' @author %% ~~who you are~~
-#' @seealso %% ~~objects to See Also as \code{\link{help}}, ~~~
-#' @references %% ~put references to the literature/web site here ~
-#' @keywords ~kwd1 ~kwd2
-#' @examples
-#' 
-#' ##---- Should be DIRECTLY executable !! ----
-#' ##-- ==>  Define data, use random,
-#' ##--	or do  help(data=index)  for the standard data sets.
-#' 
-#' ## The function is currently defined as
-#' function (x, ...) 
-#' UseMethod("labs<-")
-#' 
-#' @export
-"labs<-" <- function(x,...) UseMethod("labs<-")
-
-
-
-#' Add labels -- assignment to data frame
-#' 
-#' %% ~~ A concise (1-5 lines) description of what the function does. ~~
-#' 
-#' %% ~~ If necessary, more details than the description above ~~
-#' 
-#' @param x %% ~~Describe \code{x} here~~
-#' @param value %% ~~Describe \code{value} here~~
-#' @note %% ~~further notes~~
-#' @author %% ~~who you are~~
-#' @seealso %% ~~objects to See Also as \code{\link{help}}, ~~~
-#' @references %% ~put references to the literature/web site here ~
-#' @keywords ~kwd1 ~kwd2
-#' @examples
-#' 
-#' ##---- Should be DIRECTLY executable !! ----
-#' ##-- ==>  Define data, use random,
-#' ##--	or do  help(data=index)  for the standard data sets.
-#' 
-#' ## The function is currently defined as
-#' function (x, value) 
-#' {
-#'     value <- c(value, "", "")[1:2]
-#'     attr(x, "labs") <- value
-#'     if (!inherits(x, "data.frame.lab")) 
-#'         class(x) <- c("data.frame.lab", class(x))
-#'     x
-#'   }
-#' 
-#' @export
-"labs<-.data.frame" <- function( x, value ) {
-      value <- c( value, "", "") [ 1:2 ]
-      attr(x,"labs") <- value
-      if( !inherits(x,"data.frame.lab")) class(x) <- c( "data.frame.lab", class(x))
-      x
-  } 
-
-
-#' Add labels -- default
-#' 
-#' %% ~~ A concise (1-5 lines) description of what the function does. ~~
-#' 
-#' %% ~~ If necessary, more details than the description above ~~
-#' 
-#' @param x %% ~~Describe \code{x} here~~
-#' @param value %% ~~Describe \code{value} here~~
-#' @note %% ~~further notes~~
-#' @author %% ~~who you are~~
-#' @seealso %% ~~objects to See Also as \code{\link{help}}, ~~~
-#' @references %% ~put references to the literature/web site here ~
-#' @keywords ~kwd1 ~kwd2
-#' @examples
-#' 
-#' ##---- Should be DIRECTLY executable !! ----
-#' ##-- ==>  Define data, use random,
-#' ##--	or do  help(data=index)  for the standard data sets.
-#' 
-#' ## The function is currently defined as
-#' function (x, value) 
-#' {
-#'     nd <- length(dim(x))
-#'     value <- c(value, rep("", nd))[1:nd]
-#'     names(dimnames(x)) <- value
-#'     x
-#'   }
-#' 
-#' @export
-"labs<-.default" <- function(x, value) {
-      nd <- length(dim(x))
-      value <- c( value, rep("",nd))[1:nd]
-      names(dimnames(x)) <- value
-      x
-}
-
-#' @export
-labs <- function(x,...) UseMethod("labs")
-
-
-#' Add labels -- data frame
-#' 
-#' %% ~~ A concise (1-5 lines) description of what the function does. ~~
-#' 
-#' %% ~~ If necessary, more details than the description above ~~
-#' 
-#' @param x %% ~~Describe \code{x} here~~
-#' @param \dots %% ~~Describe \code{\dots} here~~
-#' @note %% ~~further notes~~
-#' @author %% ~~who you are~~
-#' @seealso %% ~~objects to See Also as \code{\link{help}}, ~~~
-#' @references %% ~put references to the literature/web site here ~
-#' @keywords ~kwd1 ~kwd2
-#' @examples
-#' 
-#' ##---- Should be DIRECTLY executable !! ----
-#' ##-- ==>  Define data, use random,
-#' ##--	or do  help(data=index)  for the standard data sets.
-#' 
-#' ## The function is currently defined as
-#' function (x, ...) 
-#' attr(x, "labs")
-#' 
-#' @export
-labs.data.frame.lab <- function( x ,...) attr(x,"labs")
-
-
-#' Add labels -- default
-#' 
-#' %% ~~ A concise (1-5 lines) description of what the function does. ~~
-#' 
-#' %% ~~ If necessary, more details than the description above ~~
-#' 
-#' @param x %% ~~Describe \code{x} here~~
-#' @param \dots %% ~~Describe \code{\dots} here~~
-#' @note %% ~~further notes~~
-#' @author %% ~~who you are~~
-#' @seealso %% ~~objects to See Also as \code{\link{help}}, ~~~
-#' @references %% ~put references to the literature/web site here ~
-#' @keywords ~kwd1 ~kwd2
-#' @examples
-#' 
-#' ##---- Should be DIRECTLY executable !! ----
-#' ##-- ==>  Define data, use random,
-#' ##--	or do  help(data=index)  for the standard data sets.
-#' 
-#' ## The function is currently defined as
-#' function (x, ...) 
-#' names(dimnames(x))
-#' 
-#' @export
-labs.default <- function(x,...) names(dimnames(x))
 
 
 
