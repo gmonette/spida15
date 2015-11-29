@@ -1,6 +1,7 @@
 # spida15
 
-Branched from spida in November 2015 using roxygen2. Put changes in spidanew  until spida gets replaced with spida 15
+Branched from spida in November 2015 using roxygen2. Put changes in spidanew. Changes, although very incomplete
+were merge back in to 'spida' on November 29, 2015. A 'devel' branch created for ongoing changes. Thus spida15 is essentially obsolete.
 
 Version 0.1.0
 
