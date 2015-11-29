@@ -44,8 +44,8 @@ print.data.frame.lab <-
 
 #' Add labels -- assignment
 #' 
-#' @param x %% ~~Describe \code{x} here~~
-#' @param \dots %% ~~Describe \code{\dots} here~~
+#' @param x 
+#' @param \dots 
 #' @export
 "labs<-" <- function(x,...) UseMethod("labs<-")
 
@@ -53,8 +53,8 @@ print.data.frame.lab <-
 
 #' Add labels -- assignment to data frame
 #' 
-#' @param x %% ~~Describe \code{x} here~~
-#' @param value %% ~~Describe \code{value} here~~
+#' @param x 
+#' @param value 
 #' @export
 "labs<-.data.frame" <- function( x, value ) {
   value <- c( value, "", "") [ 1:2 ]
@@ -64,8 +64,8 @@ print.data.frame.lab <-
 } 
 #' Add labels -- default
 #' 
-#' @param x %% ~~Describe \code{x} here~~
-#' @param value %% ~~Describe \code{value} here~~
+#' @param x
+#' @param value
 #' @export
 "labs<-.default" <- function(x, value) {
   nd <- length(dim(x))
@@ -80,15 +80,15 @@ labs <- function(x,...) UseMethod("labs")
 
 #' Add labels -- data frame
 #' 
-#' @param x %% ~~Describe \code{x} here~~
-#' @param \dots %% ~~Describe \code{\dots} here~~
+#' @param x 
+#' @param \dots
 #' @export
 labs.data.frame.lab <- function( x ,...) attr(x,"labs")
 
 
 #' Add labels -- default
 #' 
-#' @param x %% ~~Describe \code{x} here~~
-#' @param \dots %% ~~Describe \code{\dots} here~~
+#' @param x 
+#' @param \dots 
 #' @export
 labs.default <- function(x,...) names(dimnames(x))

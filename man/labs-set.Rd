@@ -7,9 +7,9 @@
 labs(x, ...) <- value
 }
 \arguments{
-\item{x}{%% ~~Describe \code{x} here~~}
+\item{x}{}
 
-\item{\dots}{%% ~~Describe \code{\dots} here~~}
+\item{\dots}{}
 }
 \description{
 Add labels -- assignment

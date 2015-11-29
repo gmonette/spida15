@@ -7,9 +7,9 @@
 \method{labs}{data.frame}(x) <- value
 }
 \arguments{
-\item{x}{%% ~~Describe \code{x} here~~}
+\item{x}{}
 
-\item{value}{%% ~~Describe \code{value} here~~}
+\item{value}{}
 }
 \description{
 Add labels -- assignment to data frame
